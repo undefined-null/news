@@ -38,7 +38,24 @@
         </div>
     </div>
     <script src="/node_modules/jquery/dist/jquery.js"></script>
-    <script>
+    <script type="text/javascript">
+    	$('#signin_form').on('submit', function () {
+    		var formData = $(this).serialize();
+    		//console.log(formData);
+    		$.ajax({
+    			type: "post",
+    			url: "/signin",
+    			data: formData,
+    			success: function (data) {
+    				console.log(data);
+    				if (data.code === 200) {
+    					return location.href = '/';
+    				}
+    				alert(data.msg);
+    			}
+    		});
+    		return false;
+    	});
     </script>
 </body>
 
