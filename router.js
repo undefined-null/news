@@ -10,4 +10,8 @@ router.post('/signin', c_user.checkSignin);
 
 router.get('/', c_topic.getTopic);
 
+router.get('/topic/create', c_topic.getCreateTopic);
+
+router.post('/createTopic', c_topic.createTopic);
+
 module.exports = router;

@@ -29,6 +29,9 @@ exports.checkSignin = (req, res) => {
 				msg: '密码错误！'
 			});
 		}
+		
+		// 登录成功，注册一个session
+		req.session.user = data;
 
 		res.send({
 			code: 200,

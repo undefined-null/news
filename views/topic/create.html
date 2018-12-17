@@ -28,23 +28,23 @@
     {{include '../_includes/footer.html'}}
     <script src="/node_modules/jquery/dist/jquery.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script>
-        // 1. 绑定事件
-        // 2. 取消默认行为
-        // 3. 获取表单数据
-        // 4. post
-        $("#form").on("submit", function(e) {
-            e.preventDefault();
-            var formdata = $(this).serialize();
-            $.post("/createTopic", formdata, function(data) {
-                console.log(data);
-                if (data.code === 200) {
-                    // 重定向到列表页 /
-                    window.location.href = "/";
-
-                }
-            });
-        });
+    <script type="text/javascript">
+    	$('#form').on('submit', function () {
+    		const formData = $(this).serialize();
+    		$.ajax({
+    			type: "post",
+    			url: "/createTopic",
+    			data: formData,
+    			success: function (data) {
+    				if (data.code === 500) {
+    					return alert(data.msg);
+    				}
+    				location.href = '/';
+    			}
+    		});
+    		
+    		return false;
+    	});
     </script>
 </body>
 
